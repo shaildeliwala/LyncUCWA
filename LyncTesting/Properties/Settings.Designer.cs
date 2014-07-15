@@ -49,25 +49,13 @@ namespace LyncTest.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://ocsrp.gotuc.net")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DomainAddress {
             get {
                 return ((string)(this["DomainAddress"]));
             }
             set {
                 this["DomainAddress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string copytoken {
-            get {
-                return ((string)(this["copytoken"]));
-            }
-            set {
-                this["copytoken"] = value;
             }
         }
         
@@ -92,6 +80,18 @@ namespace LyncTest.Properties {
             }
             set {
                 this["CurrentSender"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string reportMyActivityLink {
+            get {
+                return ((string)(this["reportMyActivityLink"]));
+            }
+            set {
+                this["reportMyActivityLink"] = value;
             }
         }
     }

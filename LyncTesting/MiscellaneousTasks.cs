@@ -1,42 +1,54 @@
-﻿using System.Threading.Tasks;
-using System.Net.Http;
+﻿using LyncTest.Helpers;
+using LyncTest.JsonRequests;
+using LyncTest.JsonResponses;
+using LyncTest.Properties;
+using LyncTest.UI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LyncTest
 {
     internal static class MiscellaneousTasks
     {
-        internal async static Task GetContacts()
-        {
-            var response = JsonConvert.DeserializeObject<JsonResponses.MyContacts> (
-                await (new LyncHttpClient()).
-                GetStringAsync(Program.ApplicationResource._embedded.people._links.myContacts.href));
-            
-            foreach (JsonResponses.Contact person in response._embedded.contact)
-            {
-                var presence = (string)JObject.Parse(json:(await (new LyncHttpClient()).
-                    GetStringAsync(person._links.contactPresence.href))).
-                    SelectToken("availability");
-                LyncTest.UI.MainForm.gridReference.Rows.Add(person.name, person.emailAddresses[0], presence); 
-            }
-        }
-
         internal async static Task MakeMeAvailable()
         {
-            var payload = new JsonRequests.MakeMeAvailablePayload(
+            var payload = new MakeMeAvailablePayload(
                 status: "Online",
-                modalities: new System.Collections.Generic.List<string>() { "Messaging" });
+                modalities: new List<string>() { "Messaging", "PhoneAudio" });
             
-            UI.MainForm.statusLabel.Text = "Online";
+            MainForm.statusLabel.Text = "Online";
 
-            await (new LyncHttpClient()).PostAsync(
-                requestUri: Program.ApplicationResource._embedded.me._links.makeMeAvailable.href,
+            var response = await (new LyncHttpClient()).PostAsync(
+                requestUri: Program.ApplicationInstance._embedded.me._links.makeMeAvailable.href,
                 content: new StringContent(
                     content: JsonConvert.SerializeObject(payload, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }),
-                    encoding: System.Text.Encoding.UTF8,
+                    encoding: Encoding.UTF8,
                     mediaType: "application/json"));
         }
+
+        internal async static Task ReportMyActivity()
+        {
+            if (!Uri.IsWellFormedUriString(Settings.Default.reportMyActivityLink, UriKind.RelativeOrAbsolute)
+                || Settings.Default.reportMyActivityLink.IsEmpty())
+            {
+                Program.ApplicationInstance._embedded.me._links.reportMyActivity = Program.ApplicationInstance._embedded.me._links.reportMyActivity ?? new ClsHref();
+                if (!Uri.IsWellFormedUriString(Program.ApplicationInstance._embedded.me._links.reportMyActivity.href, UriKind.RelativeOrAbsolute)
+                    || Program.ApplicationInstance._embedded.me._links.reportMyActivity.href.IsEmpty())
+                {
+                    var response = await (new LyncHttpClient()).GetStringAsync(Program.ApplicationInstance._embedded.me._links.self.href);
+                    Program.ApplicationInstance._embedded.me._links.reportMyActivity.href = (string)(JObject.Parse(response)).SelectToken("_links.reportMyActivity.href");
+                }
+                Settings.Default.reportMyActivityLink = Program.ApplicationInstance._embedded.me._links.reportMyActivity.href;
+            }
+
+            var resp = await (new LyncHttpClient()).PostAsync(Settings.Default.reportMyActivityLink, new StringContent(String.Empty));
+            resp.ToString();
+        }
+
     }
 }

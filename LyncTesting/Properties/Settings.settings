@@ -9,15 +9,15 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DomainAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://ocsrp.gotuc.net</Value>
-    </Setting>
-    <Setting Name="copytoken" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CurrentConvo" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CurrentSender" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="reportMyActivityLink" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

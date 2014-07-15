@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LyncTest.Helpers;
+using LyncTest.Properties;
+using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 
-public class LyncHttpClient : System.Net.Http.HttpClient
+public class LyncHttpClient : HttpClient
 {
 
     /// <summary>
@@ -16,10 +16,11 @@ public class LyncHttpClient : System.Net.Http.HttpClient
     /// </remarks>
     public LyncHttpClient()
     {
-        this.BaseAddress = new System.Uri(LyncTest.Properties.Settings.Default.DomainAddress);
-        if (0 != LyncTest.Properties.Settings.Default.OAuthToken.Length)
+        this.BaseAddress = new Uri(Settings.Default.DomainAddress);
+        if (!Settings.Default.OAuthToken.IsEmpty())
         {
-            this.DefaultRequestHeaders.Add("Authorization", LyncTest.Properties.Settings.Default.OAuthToken);
+            this.DefaultRequestHeaders.Add("Authorization", Settings.Default.OAuthToken.StartsWith("Bearer") ?
+                Settings.Default.OAuthToken : String.Concat("Bearer ", Settings.Default.OAuthToken));
         }
     }
 

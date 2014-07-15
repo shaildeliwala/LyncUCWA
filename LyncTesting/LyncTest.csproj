@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,15 +57,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventListener.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Contacts\ContactsTasks.cs" />
+    <Compile Include="Events\EventListener.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="JsonRequests\Applications.cs" />
     <Compile Include="JsonRequests\MakeMeAvailablePayload.cs" />
     <Compile Include="JsonRequests\StartMessagingPayload.cs" />
+    <Compile Include="JsonRequests\StartPhoneAudioPayload.cs" />
     <Compile Include="JsonResponses\ApplicationResource.cs" />
     <Compile Include="JsonResponses\AutoDiscover.cs" />
+    <Compile Include="JsonResponses\ChangeNumber.cs" />
+    <Compile Include="JsonResponses\ChangeVisibility.cs" />
+    <Compile Include="JsonResponses\ClsHref.cs" />
+    <Compile Include="JsonResponses\Communication.cs" />
+    <Compile Include="JsonResponses\Embedded.cs" />
     <Compile Include="JsonResponses\EventDetails.cs" />
+    <Compile Include="JsonResponses\Link.cs" />
+    <Compile Include="JsonResponses\Me.cs" />
     <Compile Include="JsonResponses\MyContacts.cs" />
+    <Compile Include="JsonResponses\OnlineMeetings.cs" />
+    <Compile Include="JsonResponses\People.cs" />
+    <Compile Include="JsonResponses\Phone.cs" />
+    <Compile Include="JsonResponses\Phones.cs" />
     <Compile Include="LoginTasks.cs" />
+    <Compile Include="PhoneAudio\NumberTasks.cs" />
+    <Compile Include="PhoneAudio\CallTasks.cs" />
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,10 +90,19 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LyncHttpRequest.cs" />
-    <Compile Include="MessagingClasses\OutgoingMessageTasks.cs" />
+    <Compile Include="Messaging\OutgoingMessageTasks.cs" />
     <Compile Include="MiscellaneousTasks.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MainFormTaskPerformer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ResponseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ResponseForm.Designer.cs">
+      <DependentUpon>ResponseForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +116,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\ResponseForm.resx">
+      <DependentUpon>ResponseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

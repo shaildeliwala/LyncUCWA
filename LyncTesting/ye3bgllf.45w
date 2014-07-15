@@ -1,19 +1,16 @@
-﻿using LyncTest.JsonRequests;
-using LyncTest.JsonResponses;
-using LyncTest.Properties;
-using LyncTest.UI;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;   
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using System.Linq;
+using System.Net.Http;
+using LyncTest.JsonResponses;
+using Newtonsoft.Json.Linq;
+using LyncTest.UI;
+using LyncTest.JsonRequests;
+using System.Text;
+using System.Collections.Generic;
 
 namespace LyncTest
 {
@@ -29,14 +26,7 @@ namespace LyncTest
         internal static HttpResponseMessage response = new HttpResponseMessage();
         internal static HttpClient httpClient = new HttpClient();
         internal static LyncHttpClient LyncHttpClient;
-        private static string nl = Environment.NewLine;
-        private static TextBox il = MainForm.loginActivityIndicator;
-
-        private static void AddCurrentLoginStatus(this TextBox txt, string s)
-        {
-            txt.AppendText(String.Concat(DateTime.Now.ToLongTimeString(), ": ", s, nl, nl));
-        }
-
+        private static nl = System.Environment.Newline;
         public static async Task<HttpResponseMessage> AutoDiscover()
         {
             /* UNCOMMENT LATER:
@@ -59,45 +49,39 @@ namespace LyncTest
 
             try
             {
-                il.AddCurrentLoginStatus("Attempting AutoDiscover...");
                 response = await httpClient.GetAsync(new Uri(
-                    String.Concat(Configuration.Instance().LyncServerUri.ToString(), "?sipuri=sip:", HttpUtility.UrlEncode(UserID))));
+                    String.Concat(Configuration.Instance().LyncServerUri.ToString(), "?sipuri=sip:", UserID)));
                 if (null != response && HttpStatusCode.OK == response.StatusCode)
                 {
-                    il.AddCurrentLoginStatus("External login succeeded. Server sent a link to the User resource as expected.");
+                    Console.Write("External login succeeded. \n\n");
                     return response;
                 }
             }
             catch (Exception ex)
             {
-                il.AddCurrentLoginStatus(String.Format("External requests failed. Reason: {0}\n{1} \n", ex.HResult.ToString(),ex.Message.ToString()));
+                System.Console.Write("External requests failed. Reason: {0}\n{1} \n", ex.HResult.ToString(),ex.Message.ToString());
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-
-
         public static async Task<HttpResponseMessage> FollowUser(Uri userUrl)
         {
-            il.AddCurrentLoginStatus("Attempting to GET User resource...");
             try
             {
-                if (0 != Settings.Default.OAuthToken.Trim().Length)
+                if (0 != Properties.Settings.Default.OAuthToken.Trim().Length)
                 {
-                    il.AddCurrentLoginStatus("OAuth token is available; attempting request with Authorization HTTP header attached...");
-                    Settings.Default.DomainAddress = userUrl.AbsoluteUri.Replace(userUrl.PathAndQuery, String.Empty);
+                    Properties.Settings.Default.DomainAddress = userUrl.AbsoluteUri.Replace(userUrl.PathAndQuery, String.Empty);
                     LyncHttpClient = new LyncHttpClient();
                     return await LyncHttpClient.GetAsync(userUrl);
                 }
                 else
                 {
-                    il.AddCurrentLoginStatus("OAuth token was not found; attempting request without Authorization header...");
                     return await httpClient.GetAsync(userUrl);
                 }
             }
             catch (Exception ex)
             {
-                il.AddCurrentLoginStatus(String.Format("Failed this time. Status Code: {0}\nMessage: {1}\n", response.StatusCode.ToString(), ex.Message.ToString()));
+                Console.Write("Failed this time. Status Code: {0}\nMessage: {1}\n", response.StatusCode.ToString(), ex.Message.ToString());
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
@@ -107,7 +91,6 @@ namespace LyncTest
             // See: http://ucwa.lync.com/documentation/GettingStarted-Authentication)
 
             // Get WWW-Authenticate Header items
-            il.AddCurrentLoginStatus("Getting WWW-Authenticate Header items...");
             IEnumerable<string> authItems;
             string oauthProviderLink = String.Empty, payload = String.Empty;
             var authHeaderItems = userResponse.Headers.TryGetValues("WWW-Authenticate", out authItems) ? authItems.First(a => a.ToLower().Contains("msrtcoauth")) : null;
@@ -128,37 +111,34 @@ namespace LyncTest
             /* Proper return behaviour yet to be defined below. */
             try
             {
-                il.AddCurrentLoginStatus("Sending POST request to the OAuth provider to get an OAuth token for this session...");
                 response = await httpClient.PostAsync(oauthProviderLink, new StringContent(payload, Encoding.UTF8, "application/x-www-form-urlencoded"));
                 if (null != response && HttpStatusCode.OK == response.StatusCode)
                 {
-                    il.AddCurrentLoginStatus("Request was successful. Extracting OAuth token from response content...");
-                    Settings.Default.OAuthToken = JToken.Parse(await response.Content.ReadAsStringAsync()).SelectToken("access_token").ToString();
+                    Properties.Settings.Default.OAuthToken = JToken.Parse(await response.Content.ReadAsStringAsync()).SelectToken("access_token").ToString();
                     return response; 
                 }
             }
             catch (Exception ex)
             {
-                il.AddCurrentLoginStatus(String.Format("Authentication procedure threw an exception: {0}", ex.Message.ToString()));
+                Console.Write("Authentication failed because: {0}", ex.Message.ToString());
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         public static async Task<HttpResponseMessage> FollowApplications()
         {
-            il.AddCurrentLoginStatus("Making a  POST request to the Application resource to get an Application instance for this session...");
+            var payload = JsonConvert.SerializeObject(new Applications("UCWA Samples", Guid.NewGuid().ToString()));
             
-            var payload = JsonConvert.SerializeObject(new Applications("Lync UCWA", Guid.NewGuid().ToString()));
             try
             {
                 response = await LyncHttpClient.PostAsync(
-                    requestUri: Settings.Default.ApplicationsLink,
-                    content: new StringContent(payload, Encoding.UTF8, "application/json"));
+                    requestUri: Properties.Settings.Default.ApplicationsLink,
+                    content: new StringContent(payload, System.Text.Encoding.UTF8, "application/json"));
                 if (null != response && HttpStatusCode.Created == response.StatusCode){ return response; }
             }
             catch (WebException ex)
             {
-                il.AddCurrentLoginStatus(String.Format("Following applications link failed. Error: {0}", ex.Message.ToString()));
+                Console.Write("Following applications link failed. Error: {0}", ex.Message.ToString());
                 return response;
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
@@ -166,10 +146,10 @@ namespace LyncTest
 
         public static async Task DoLoginTasks()
         {
-            il.AddCurrentLoginStatus("Login started...");
+            MainForm.indicatorLabel.Text = String.Concat(DateTime.Now.ToShortTimeString(), ": Login started...\n\n");
             var loginResponse = await LoginTasks.AutoDiscover();
             /* If response contains redirects, handle here or implement recursion on AttemptLogin() */
-            var userUrl = JsonConvert.DeserializeObject<AutoDiscoverJson>(await loginResponse.Content.ReadAsStringAsync())._links.user.href;
+            var userUrl = JsonConvert.DeserializeObject<AutoDiscoverJson>((new StreamReader(await loginResponse.Content.ReadAsStreamAsync()).ReadToEnd()))._links.user.href;
             var userResponse = await FollowUser(new Uri(userUrl));
             HttpResponseMessage authenticateResponse;
             HttpResponseMessage applicationsResponse;
@@ -185,16 +165,14 @@ namespace LyncTest
 
             if (HttpStatusCode.OK == userResponse.StatusCode)
             {
-                il.AddCurrentLoginStatus("Authentication successful. Following applications link to get application resource...");
-                Settings.Default.ApplicationsLink = (string) JObject.Parse(new StreamReader(await userResponse.Content.ReadAsStreamAsync()).ReadToEnd()).SelectToken("_links.applications.href");
+                Console.Write("Authentication successful. Following applications link to get application resource... \n\n");
+                Properties.Settings.Default.ApplicationsLink = (string) JObject.Parse(new StreamReader(await userResponse.Content.ReadAsStreamAsync()).ReadToEnd()).SelectToken("_links.applications.href");
                 applicationsResponse = await LoginTasks.FollowApplications();
                 if (HttpStatusCode.Created == applicationsResponse.StatusCode)
                 {
-                    il.AddCurrentLoginStatus("Successfully received an Application instance. Beginning current session...");
-                    MainForm.applicationObject.Text = await applicationsResponse.Content.ReadAsStringAsync();
-                    Program.ApplicationInstance = new ApplicationResponse();
-                    Program.ApplicationInstance = JsonConvert.DeserializeObject<ApplicationResponse>(await applicationsResponse.Content.ReadAsStringAsync());
-                    MainForm.nameLabel.Text = Program.ApplicationInstance._embedded.me.name;
+                    Program.ApplicationResource = new ApplicationResponse();
+                    Program.ApplicationResource = JsonConvert.DeserializeObject<ApplicationResponse>(new StreamReader(await applicationsResponse.Content.ReadAsStreamAsync()).ReadToEnd());
+                    MainForm.nameLabel.Text = Program.ApplicationResource._embedded.me.name;
                 }
             }
         }

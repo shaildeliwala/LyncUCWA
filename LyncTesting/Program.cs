@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LyncTest.JsonResponses;
+using System;
 using System.Windows.Forms;
 
 namespace LyncTest
@@ -21,6 +19,8 @@ namespace LyncTest
         }
 
         public static UI.MainForm mForm;
-        public static JsonResponses.ApplicationResponse ApplicationResource;
+        public static ApplicationResponse ApplicationInstance;
+        public static MyContacts Contacts;
+        public static Phones Phones;
     }
 }
