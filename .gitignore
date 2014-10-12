@@ -155,3 +155,14 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 LyncTesting/JavaScript1.js
+*.dll
+packages/Newtonsoft.Json.6.0.2/lib/net20/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/lib/net35/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/lib/net40/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/lib/net45/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/lib/portable-net40+sl5+wp80+win8+monotouch+monoandroid/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/lib/netcore45/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml
+packages/Newtonsoft.Json.6.0.2/Newtonsoft.Json.6.0.2.nupkg
+packages/Newtonsoft.Json.6.0.2/Newtonsoft.Json.6.0.2.nuspec
+packages/Newtonsoft.Json.6.0.2/tools/install.ps1
