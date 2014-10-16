@@ -5,6 +5,8 @@ using LyncUCWA.JsonResponses;
 using LyncUCWA.Messaging;
 using LyncUCWA.PhoneAudio;
 using LyncUCWA.Properties;
+using LyncUCWA.Service;
+using LyncUCWA.Service.Interface;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
@@ -37,6 +39,9 @@ namespace LyncUCWA.UI
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            //var weatherService = ServiceFactory<IWeatherInfoTask>.CreateObject();
+            //var weatherInfo = await weatherService.GetWeatherByCity("london,uk");
+            
             LoginTasks.UserID = txtUserID.Text;
             LoginTasks.Password = txtPassword.Text;
             Settings.Default.OAuthToken = txtOAuthToken.Text;
@@ -51,7 +56,7 @@ namespace LyncUCWA.UI
             }
             if (!LyncHttpClient.IsLoggedIn)
                 return;
-            await MiscellaneousTasks.MakeMeAvailable();
+            await ServiceFactory<IMakeMeAvailableTask>.CreateObject().MakeMeAvailable();
             Program.Contacts = await ContactsTasks.GetContacts();
             await UpdateContacts(Program.Contacts);
             Program.Phones = await NumberTasks.GetPhones(Program.ApplicationInstance._embedded.me._links.phones);

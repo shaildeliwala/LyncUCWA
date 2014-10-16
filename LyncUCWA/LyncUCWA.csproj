@@ -104,6 +104,7 @@
     <Compile Include="JsonResponses\Phone.cs" />
     <Compile Include="JsonResponses\Phones.cs" />
     <Compile Include="LoginTasks.cs" />
+    <Compile Include="LyncHttpClient.cs" />
     <Compile Include="PhoneAudio\NumberTasks.cs" />
     <Compile Include="PhoneAudio\CallTasks.cs" />
     <Compile Include="UI\MainForm.cs">
@@ -112,7 +113,6 @@
     <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LyncHttpRequest.cs" />
     <Compile Include="Messaging\OutgoingMessageTasks.cs" />
     <Compile Include="MiscellaneousTasks.cs" />
     <Compile Include="Program.cs" />
@@ -169,6 +169,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LyncUCWA.Service\LyncUCWA.Service.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>LyncUCWA.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

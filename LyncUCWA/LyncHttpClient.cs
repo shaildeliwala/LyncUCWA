@@ -24,5 +24,4 @@ public class LyncHttpClient : HttpClient
                 Settings.Default.OAuthToken : String.Concat("Bearer ", Settings.Default.OAuthToken));
         }
     }
-
 }

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LyncUCWA.Service</RootNamespace>
+    <AssemblyName>LyncUCWA.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>126a0cf6</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Interface\IWeatherInfoTask.cs" />
+    <Compile Include="Real\WeatherInfoTask.cs" />
+    <Compile Include="ServiceEntity\ApplicationResource.cs" />
+    <Compile Include="ServiceEntity\AutoDiscover.cs" />
+    <Compile Include="ServiceEntity\ChangeNumber.cs" />
+    <Compile Include="ServiceEntity\ChangeVisibility.cs" />
+    <Compile Include="ServiceEntity\ClsHref.cs" />
+    <Compile Include="ServiceEntity\Communication.cs" />
+    <Compile Include="ServiceEntity\Embedded.cs" />
+    <Compile Include="ServiceEntity\EventDetails.cs" />
+    <Compile Include="ServiceEntity\Link.cs" />
+    <Compile Include="ServiceEntity\Me.cs" />
+    <Compile Include="ServiceEntity\MyContacts.cs" />
+    <Compile Include="ServiceEntity\OnlineMeetings.cs" />
+    <Compile Include="ServiceEntity\People.cs" />
+    <Compile Include="ServiceEntity\Phone.cs" />
+    <Compile Include="ServiceEntity\Phones.cs" />
+    <Compile Include="ServiceEntity\Weather.cs" />
+    <Compile Include="ServiceFactory.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Interface\IBaseTask.cs" />
+    <Compile Include="Interface\IDataErrorInfo.cs" />
+    <Compile Include="Interface\IMakeMeAvailableTask.cs" />
+    <Compile Include="Mock\MakeMeAvailableTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Real\MakeMeAvailableTask.cs" />
+    <Compile Include="APIType.cs" />
+    <Compile Include="ServiceEntity\BaseEntity.cs" />
+    <Compile Include="Headers.cs" />
+    <Compile Include="Request\BaseRequest.cs" />
+    <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\WeatherResponse.cs" />
+    <Compile Include="RestServiceHelper.cs" />
+    <Compile Include="ServiceCallManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LocalEntity\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>C:\Program Files %28x86%29\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5\System.Net.Http.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
