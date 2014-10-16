@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LyncUCWA.Service.ServiceCenter.Entity
+namespace LyncUCWA.Service.Model
 {
     public abstract class BaseEntity
     {

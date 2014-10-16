@@ -1,4 +1,4 @@
-﻿using LyncUCWA.Service.ServiceEntity;
+﻿using LyncUCWA.Service.Model;
 
 namespace LyncUCWA.Service
 {

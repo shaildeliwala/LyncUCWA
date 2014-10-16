@@ -36,22 +36,22 @@
   <ItemGroup>
     <Compile Include="Interface\IWeatherInfoTask.cs" />
     <Compile Include="Real\WeatherInfoTask.cs" />
-    <Compile Include="ServiceEntity\ApplicationResource.cs" />
-    <Compile Include="ServiceEntity\AutoDiscover.cs" />
-    <Compile Include="ServiceEntity\ChangeNumber.cs" />
-    <Compile Include="ServiceEntity\ChangeVisibility.cs" />
-    <Compile Include="ServiceEntity\ClsHref.cs" />
-    <Compile Include="ServiceEntity\Communication.cs" />
-    <Compile Include="ServiceEntity\Embedded.cs" />
-    <Compile Include="ServiceEntity\EventDetails.cs" />
-    <Compile Include="ServiceEntity\Link.cs" />
-    <Compile Include="ServiceEntity\Me.cs" />
-    <Compile Include="ServiceEntity\MyContacts.cs" />
-    <Compile Include="ServiceEntity\OnlineMeetings.cs" />
-    <Compile Include="ServiceEntity\People.cs" />
-    <Compile Include="ServiceEntity\Phone.cs" />
-    <Compile Include="ServiceEntity\Phones.cs" />
-    <Compile Include="ServiceEntity\Weather.cs" />
+    <Compile Include="Model\ApplicationResource.cs" />
+    <Compile Include="Model\AutoDiscover.cs" />
+    <Compile Include="Model\ChangeNumber.cs" />
+    <Compile Include="Model\ChangeVisibility.cs" />
+    <Compile Include="Model\ClsHref.cs" />
+    <Compile Include="Model\Communication.cs" />
+    <Compile Include="Model\Embedded.cs" />
+    <Compile Include="Model\EventDetails.cs" />
+    <Compile Include="Model\Link.cs" />
+    <Compile Include="Model\Me.cs" />
+    <Compile Include="Model\MyContacts.cs" />
+    <Compile Include="Model\OnlineMeetings.cs" />
+    <Compile Include="Model\People.cs" />
+    <Compile Include="Model\Phone.cs" />
+    <Compile Include="Model\Phones.cs" />
+    <Compile Include="Model\Weather.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Configuration.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Real\MakeMeAvailableTask.cs" />
     <Compile Include="APIType.cs" />
-    <Compile Include="ServiceEntity\BaseEntity.cs" />
+    <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Headers.cs" />
     <Compile Include="Request\BaseRequest.cs" />
     <Compile Include="Response\BaseResponse.cs" />
@@ -70,9 +70,7 @@
     <Compile Include="RestServiceHelper.cs" />
     <Compile Include="ServiceCallManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LocalEntity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>

@@ -1,4 +1,4 @@
-﻿namespace LyncUCWA.Service.ServiceEntity
+﻿namespace LyncUCWA.Service.Model
 {
         [Newtonsoft.Json.JsonObject(Newtonsoft.Json.MemberSerialization.OptOut)]
         public class AutoDiscoverJson

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LyncUCWA.Service.ServiceEntity
+namespace LyncUCWA.Service.Model
 {
     public class Communication : ClsHref
     {

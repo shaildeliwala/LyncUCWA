@@ -1,4 +1,4 @@
-﻿namespace LyncUCWA.Service.ServiceEntity
+﻿namespace LyncUCWA.Service.Model
 {
     public class Link
     {

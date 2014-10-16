@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LyncUCWA.Service.ServiceEntity
+namespace LyncUCWA.Service.Model
 {
     class MyContacts : ClsHref
     {
@@ -18,5 +18,4 @@ namespace LyncUCWA.Service.ServiceEntity
         public Link _links { get; set; }
         public string etag { get; set; }
     }
-
 }

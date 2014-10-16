@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace LyncUCWA.Service.ServiceEntity
+namespace LyncUCWA.Service.Model
 {
     [JsonObject]
     public class EventDetails

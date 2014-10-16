@@ -15,22 +15,6 @@ namespace LyncUCWA
 {
     internal static class MiscellaneousTasks
     {
-        internal async static Task MakeMeAvailable()
-        {
-            var payload = new MakeMeAvailablePayload(
-                status: "Online",
-                modalities: new List<string>() { "Messaging", "PhoneAudio" });
-            
-            MainForm.statusLabel.Text = "Online";
-
-            var response = await (new LyncHttpClient()).PostAsync(
-                requestUri: Program.ApplicationInstance._embedded.me._links.makeMeAvailable.href,
-                content: new StringContent(
-                    content: JsonConvert.SerializeObject(payload, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }),
-                    encoding: Encoding.UTF8,
-                    mediaType: "application/json"));
-        }
-
         internal async static Task ReportMyActivity()
         {
             if (!Uri.IsWellFormedUriString(Settings.Default.reportMyActivityLink, UriKind.RelativeOrAbsolute)
