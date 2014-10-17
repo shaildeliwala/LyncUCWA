@@ -1,11 +1,11 @@
-﻿using LyncUCWA.Service.Response;
+﻿using LyncUCWA.Service.Model;
 using System.Threading.Tasks;
 
 namespace LyncUCWA.Service.Interface
 {
     public interface IWeatherInfoTask : IBaseTask
     {
-        Task<WeatherResponse> GetWeatherByCity(string city);
+        Task<WeatherModel> GetWeatherByCity(string city);
 
 
     }

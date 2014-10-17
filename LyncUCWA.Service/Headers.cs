@@ -1,5 +1,5 @@
 ﻿using LyncUCWA.Service.Request;
-using LyncUCWA.Service.Response;
+using LyncUCWA.Service.Model;
 using System.Collections.Generic;
 
 namespace LyncUCWA.Service
@@ -12,10 +12,10 @@ namespace LyncUCWA.Service
     public class Headers
     {
         internal Dictionary<string, string> RequestHeaders { get; private set; }
-        private readonly BaseResponse _response;
+        private readonly BaseModel _response;
         private readonly BaseRequest _request;
 
-        public Headers(BaseResponse response, BaseRequest request = null)
+        public Headers(BaseModel response, BaseRequest request = null)
         {
             RequestHeaders = new Dictionary<string, string>();
             _response = response;

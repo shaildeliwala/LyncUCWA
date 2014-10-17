@@ -1,5 +1,5 @@
 ﻿using LyncUCWA.Service.Interface;
-using LyncUCWA.Service.Response;
+using LyncUCWA.Service.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,7 +10,7 @@ namespace LyncUCWA.Service.Real
 {
     public class MakeMeAvailableTask : IMakeMeAvailableTask
     {
-        public async Task<BaseResponse> MakeMeAvailable()
+        public async Task<BaseModel> MakeMeAvailable()
         {
             var payload = new {
                 status = "Online",
@@ -21,7 +21,7 @@ namespace LyncUCWA.Service.Real
                 encoding: Encoding.UTF8,
                 mediaType: "application/json");
 
-            return await ServiceCallManager.SendData<BaseResponse>(
+            return await ServiceCallManager.SendData<BaseModel>(
                 Configuration.Instance().CurrentApplication._embedded.me._links.makeMeAvailable.href,
                 HttpMethod.Post,
                 content);

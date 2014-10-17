@@ -1,9 +1,8 @@
-﻿using LyncUCWA.Service.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace LyncUCWA.Service.Response
+namespace LyncUCWA.Service.Model
 {
-    public class WeatherResponse : BaseResponse
+    public class WeatherModel : BaseModel
     {
         public Coord coord { get; set; }
         public Sys sys { get; set; }

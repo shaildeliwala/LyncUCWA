@@ -1,10 +1,10 @@
-﻿using LyncUCWA.Service.Response;
+﻿using LyncUCWA.Service.Model;
 using System.Threading.Tasks;
 
 namespace LyncUCWA.Service.Interface
 {
     public interface IMakeMeAvailableTask : IBaseTask
     {
-        Task<BaseResponse> MakeMeAvailable();
+        Task<BaseModel> MakeMeAvailable();
     }
 }

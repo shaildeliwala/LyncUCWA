@@ -1,4 +1,4 @@
-﻿using LyncUCWA.Service.Response;
+﻿using LyncUCWA.Service.Model;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,7 +14,7 @@ namespace LyncUCWA.Service
             get { return "https://my.domainname.com/"; }
         }
 
-        public static async Task<TResponse> SendData<TResponse>(string url, HttpMethod method = null, HttpContent content = null) where TResponse : BaseResponse
+        public static async Task<TResponse> SendData<TResponse>(string url, HttpMethod method = null, HttpContent content = null) where TResponse : BaseModel
         {
             var request = new HttpRequestMessage(method, url);
             HttpResponseMessage response;
@@ -31,7 +31,7 @@ namespace LyncUCWA.Service
                     return returnObject;
                 }
             }
-            return new BaseResponse() { Response = response } as TResponse;
+            return new BaseModel() { Response = response } as TResponse;
         }
     }
 }

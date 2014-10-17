@@ -65,9 +65,8 @@
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Headers.cs" />
     <Compile Include="Request\BaseRequest.cs" />
-    <Compile Include="Response\BaseResponse.cs" />
-    <Compile Include="Response\WeatherResponse.cs" />
-    <Compile Include="RestServiceHelper.cs" />
+    <Compile Include="Model\BaseResponse.cs" />
+    <Compile Include="Model\WeatherResponse.cs" />
     <Compile Include="ServiceCallManager.cs" />
   </ItemGroup>
   <ItemGroup />

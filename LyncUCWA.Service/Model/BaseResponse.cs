@@ -1,12 +1,9 @@
 ﻿using System.Net.Http;
 
-namespace LyncUCWA.Service.Response
+namespace LyncUCWA.Service.Model
 {
-    public class BaseResponse
+    public class BaseModel
     {
         public HttpResponseMessage Response { get; set; }
     }
-
-
-
 }
