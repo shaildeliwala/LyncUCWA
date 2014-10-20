@@ -41,7 +41,7 @@ namespace LyncUCWA.UI
         {
             //var weatherService = ServiceFactory<IWeatherInfoTask>.CreateObject();
             //var weatherInfo = await weatherService.GetWeatherByCity("london,uk");
-            
+
             LoginTasks.UserID = txtUserID.Text;
             LoginTasks.Password = txtPassword.Text;
             Settings.Default.OAuthToken = txtOAuthToken.Text;

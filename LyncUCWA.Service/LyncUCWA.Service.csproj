@@ -53,7 +53,6 @@
     <Compile Include="Model\Phones.cs" />
     <Compile Include="Model\Weather.cs" />
     <Compile Include="ServiceFactory.cs" />
-    <Compile Include="Common.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Interface\IBaseTask.cs" />
     <Compile Include="Interface\IDataErrorInfo.cs" />
