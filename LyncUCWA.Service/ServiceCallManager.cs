@@ -1,4 +1,4 @@
-﻿using LyncUCWA.Service.Model;
+﻿using LyncUCWA.Service.Interface;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,14 +14,14 @@ namespace LyncUCWA.Service
             get { return "https://my.domainname.com/"; }
         }
 
-        public static async Task<TResponse> SendData<TResponse>(string url, HttpMethod method = null, HttpContent content = null) where TResponse : BaseModel
+        public static async Task<TResponse> SendData<TResponse>(string url, HttpMethod method = null, HttpContent content = null) where TResponse : class, IBaseModel, new()
         {
             var request = new HttpRequestMessage(method, url);
             HttpResponseMessage response;
             method = method ?? HttpMethod.Get;
             if (content != null)
                 request.Content = content;
-            using (var httpClient = new HttpClient())
+            using (var httpClient = new HttpClient() { BaseAddress = Configuration.Instance().DomainAddress })
             {
                 response = await httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
@@ -31,7 +31,7 @@ namespace LyncUCWA.Service
                     return returnObject;
                 }
             }
-            return new BaseModel() { Response = response } as TResponse;
+            return new TResponse() { Response = response };
         }
     }
 }

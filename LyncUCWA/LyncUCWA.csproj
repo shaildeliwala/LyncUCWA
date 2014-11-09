@@ -75,7 +75,6 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Contacts\ContactsTasks.cs" />
     <Compile Include="Events\EventListener.cs" />
-    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="JsonRequests\Applications.cs" />
     <Compile Include="JsonRequests\MakeMeAvailablePayload.cs" />
     <Compile Include="JsonRequests\StartMessagingPayload.cs" />

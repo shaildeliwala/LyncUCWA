@@ -1,4 +1,4 @@
-﻿using LyncUCWA.Helpers;
+﻿using LyncUCWA.Service;
 using LyncUCWA.JsonResponses;
 using Newtonsoft.Json;
 using System;

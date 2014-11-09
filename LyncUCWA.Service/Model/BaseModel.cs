@@ -1,8 +1,9 @@
-﻿using System.Net.Http;
+﻿using LyncUCWA.Service.Interface;
+using System.Net.Http;
 
 namespace LyncUCWA.Service.Model
 {
-    public class BaseModel
+    public class BaseModel : IBaseModel
     {
         public HttpResponseMessage Response { get; set; }
     }

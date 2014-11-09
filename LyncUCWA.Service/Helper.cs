@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LyncUCWA.Helpers
+namespace LyncUCWA.Service
 {
-    public static class StringHelper
+    public static class Helper
     {
         public static bool IsEmpty(this string s)
         {

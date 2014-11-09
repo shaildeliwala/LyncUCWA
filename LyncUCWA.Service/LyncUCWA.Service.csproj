@@ -34,10 +34,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Interface\IBaseModel.cs" />
+    <Compile Include="Interface\IEstablishSessionTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Interface\IWeatherInfoTask.cs" />
+    <Compile Include="Model\BaseModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UCWAHttpClient.cs" />
+    <Compile Include="Real\EstablishSessionTask.cs" />
     <Compile Include="Real\WeatherInfoTask.cs" />
-    <Compile Include="Model\ApplicationResource.cs" />
-    <Compile Include="Model\AutoDiscover.cs" />
+    <Compile Include="Model\ApplicationModel.cs" />
+    <Compile Include="Model\AutoDiscoverModel.cs" />
     <Compile Include="Model\ChangeNumber.cs" />
     <Compile Include="Model\ChangeVisibility.cs" />
     <Compile Include="Model\ClsHref.cs" />
@@ -64,9 +73,9 @@
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Headers.cs" />
     <Compile Include="Request\BaseRequest.cs" />
-    <Compile Include="Model\BaseResponse.cs" />
     <Compile Include="Model\WeatherResponse.cs" />
     <Compile Include="ServiceCallManager.cs" />
+    <Compile Include="Helper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

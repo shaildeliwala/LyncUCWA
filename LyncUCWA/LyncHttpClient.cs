@@ -1,4 +1,4 @@
-﻿using LyncUCWA.Helpers;
+﻿using LyncUCWA.Service;
 using LyncUCWA.Properties;
 using System;
 using System.Net.Http;

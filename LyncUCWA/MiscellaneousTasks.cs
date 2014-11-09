@@ -1,14 +1,9 @@
-﻿using LyncUCWA.Helpers;
-using LyncUCWA.JsonRequests;
+﻿using LyncUCWA.Service;
 using LyncUCWA.JsonResponses;
 using LyncUCWA.Properties;
-using LyncUCWA.UI;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LyncUCWA
@@ -29,10 +24,9 @@ namespace LyncUCWA
                 }
                 Settings.Default.reportMyActivityLink = Program.ApplicationInstance._embedded.me._links.reportMyActivity.href;
             }
-
+            
             var resp = await (new LyncHttpClient()).PostAsync(Settings.Default.reportMyActivityLink, new StringContent(String.Empty));
             resp.ToString();
         }
-
     }
 }

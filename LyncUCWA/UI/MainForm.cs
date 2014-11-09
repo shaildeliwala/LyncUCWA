@@ -1,6 +1,5 @@
 ﻿using LyncUCWA.Contacts;
 using LyncUCWA.Events;
-using LyncUCWA.Helpers;
 using LyncUCWA.JsonResponses;
 using LyncUCWA.Messaging;
 using LyncUCWA.PhoneAudio;
