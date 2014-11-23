@@ -11,14 +11,14 @@ public class UCWAHttpClient : HttpClient
     /// </summary>
     public UCWAHttpClient()
     {
-        this.BaseAddress = Configuration.Instance().DomainAddress;
+        BaseAddress = Configuration.Instance().DomainAddress;
         //AuthenticationHeaderValue headerValue;
         //if (AuthenticationHeaderValue.TryParse(Configuration.Instance().OAuthToken, out headerValue))
         //    httpClient.DefaultRequestHeaders.Authorization = headerValue;
                     
         if (!Configuration.Instance().OAuthToken.IsEmpty())
         {
-            this.DefaultRequestHeaders.Add("Authorization", Configuration.Instance().OAuthToken.StartsWith("Bearer") ?
+            DefaultRequestHeaders.Add("Authorization", Configuration.Instance().OAuthToken.StartsWith("Bearer") ?
                 Configuration.Instance().OAuthToken : String.Concat("Bearer ", Configuration.Instance().OAuthToken));
         }
     }

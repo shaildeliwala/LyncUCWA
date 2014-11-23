@@ -10,7 +10,8 @@ namespace LyncUCWA.Service
         {
             //Phase 1:
             {typeof(IWeatherInfoTask), typeof(Real.WeatherInfoTask)},
-            {typeof(IMakeMeAvailableTask), typeof(Real.MakeMeAvailableTask)}
+            {typeof(IMakeMeAvailableTask), typeof(Real.MakeMeAvailableTask)},
+            {typeof(IEstablishSessionTask), typeof(Real.EstablishSessionTask)}
         };
         public static T CreateObject()
         {

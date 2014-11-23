@@ -7,21 +7,14 @@ namespace LyncUCWA.Service
 {
     public class ServiceCallManager
     {
-        private static HttpClient _httpClient;
-
-        public static string ServiceUrl
-        {
-            get { return "https://my.domainname.com/"; }
-        }
-
         public static async Task<TResponse> SendData<TResponse>(string url, HttpMethod method = null, HttpContent content = null) where TResponse : class, IBaseModel, new()
         {
+            method = method ?? HttpMethod.Get;
             var request = new HttpRequestMessage(method, url);
             HttpResponseMessage response;
-            method = method ?? HttpMethod.Get;
             if (content != null)
                 request.Content = content;
-            using (var httpClient = new HttpClient() { BaseAddress = Configuration.Instance().DomainAddress })
+            using (var httpClient = new UCWAHttpClient())
             {
                 response = await httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)

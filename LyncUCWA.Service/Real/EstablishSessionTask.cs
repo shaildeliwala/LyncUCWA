@@ -17,7 +17,7 @@ namespace LyncUCWA.Service.Real
         public override async Task InitiateSession(string userId, string password, string oauthToken = "")
         {
             var response = await AutoDiscover(userId);
-            var userResponse = await FollowUser(response._links.user.href);
+            var userResponse = await FollowUser(response._links.user.href, oauthToken.IsEmpty() ? String.Empty : oauthToken);
 
             if (userResponse.Response.StatusCode == HttpStatusCode.Unauthorized)
             {
