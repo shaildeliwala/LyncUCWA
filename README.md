@@ -5,7 +5,7 @@ Overview
 --------
 A sample desktop application that uses UCWA, Lync's Web API.
 
-The project started as a simple feasibility check and to see how UCWA authentication worked. It grew from that into a desktop application and is being actively worked on. All requests are made using a `System.Net.Http.HttpClient` object.
+The project started as a simple feasibility check and to see how UCWA authentication worked. It grew from that into a desktop application. All requests are made using a `System.Net.Http.HttpClient` object.
 
 Features
 --------
@@ -20,7 +20,7 @@ Features
 
 Future Developments
 -------------------
-This is only a proof-of-concept application and not thoroughly tested. It will be refactored, modified, and tested a lot more. Following is some of the work that is being, or will be, done.
+This is only a proof-of-concept application and not thoroughly tested. It will be refactored, modified, and tested more comprehensively. Following is some of the work that is being, or will be, done.
 
 1. Using a proper architecture that separates the model/business layer to facilitate its reusability.
 
